@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  client:
+    build: ./client
+    ports:
+      - "5173:80"
+
+  server:
+    build: ./server
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./server/.env
+    volumes:
+      - ./server/tasks.db:/app/tasks.db
+      - ./server/tokens.db:/app/tokens.db
+      - ./server/users.db:/app/users.db
